@@ -1,1 +1,421 @@
-Simple Spirit Level does not collect, store or transmit any personal data. No analytics, no crash reporting, no advertising SDKs. All settings are stored locally on your device using Android SharedPreferences and never leave it. The app requires accelerometer access to measure tilt angles. It does not require internet access and no network requests are made.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Spirit Level — Privacy Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --mid: #1c1c1c;
+    --silver-dark: #4a4a4a;
+    --silver: #909090;
+    --silver-light: #d0d0d0;
+    --white: #f0f0f0;
+    --green: #55cc55;
+    --green-dim: #2a6a2a;
+    --red: #cc2222;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { background: var(--black); color: var(--silver-light); font-family: var(--sans); }
+
+  body {
+    min-height: 100vh;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 2px,
+        rgba(255,255,255,0.012) 2px,
+        rgba(255,255,255,0.012) 4px
+      ),
+      linear-gradient(180deg, #0e0e0e 0%, #111 40%, #0c0c0c 100%);
+  }
+
+  /* Header */
+  header {
+    border-bottom: 1px solid #1e1e1e;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    height: 72px;
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--green-dim);
+    border: 1.5px solid var(--silver-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .logo-bubble {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff 0%, #d8d8d8 40%, #a0a0a0 100%);
+    position: absolute;
+    top: 8px;
+    left: 8px;
+  }
+  .logo-crossh {
+    position: absolute;
+    inset: 0;
+  }
+  .logo-crossh::before, .logo-crossh::after {
+    content: '';
+    position: absolute;
+    background: rgba(255,255,255,0.15);
+  }
+  .logo-crossh::before { width: 1px; height: 100%; left: 50%; top: 0; }
+  .logo-crossh::after  { width: 100%; height: 1px; top: 50%; left: 0; }
+
+  .header-title {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--silver);
+    text-transform: uppercase;
+  }
+  .header-badge {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    border: 1px solid var(--green-dim);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  /* Main layout */
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 5rem 2rem 6rem;
+  }
+
+  /* Hero */
+  .hero {
+    margin-bottom: 4rem;
+    border-left: 2px solid var(--red);
+    padding-left: 1.5rem;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: var(--silver-dark);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: var(--sans);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 span { color: var(--green); font-weight: 500; }
+  .hero-sub {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--silver-dark);
+    letter-spacing: 0.04em;
+  }
+
+  /* TL;DR card */
+  .tldr {
+    background: var(--mid);
+    border: 1px solid #2a2a2a;
+    border-top: 2px solid var(--green);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+  .tldr-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .tldr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  @media (max-width: 480px) { .tldr-grid { grid-template-columns: 1fr; } }
+
+  .tldr-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--silver-light);
+    line-height: 1.4;
+  }
+  .tldr-item::before {
+    content: '✓';
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .section:last-of-type { border-bottom: none; }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--silver-dark);
+    letter-spacing: 0.12em;
+    margin-bottom: 0.4rem;
+  }
+  .section h2 {
+    font-family: var(--sans);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.9rem;
+  }
+  .section p {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--silver);
+    margin-bottom: 0.75rem;
+  }
+  .section p:last-child { margin-bottom: 0; }
+
+  .inline-code {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 3px;
+    padding: 0.1em 0.4em;
+    color: var(--silver-light);
+  }
+
+  /* Permissions table */
+  .perm-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+  }
+  .perm-table th {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--silver-dark);
+    text-transform: uppercase;
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .perm-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #1a1a1a;
+    color: var(--silver);
+    vertical-align: top;
+  }
+  .perm-table tr:last-child td { border-bottom: none; }
+  .perm-table td:first-child {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--silver-light);
+    white-space: nowrap;
+    width: 40%;
+  }
+
+  /* Contact */
+  .contact-link {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--green);
+    text-decoration: none;
+    border-bottom: 1px solid var(--green-dim);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+  .contact-link:hover { border-color: var(--green); }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid #1a1a1a;
+    padding: 2rem;
+    text-align: center;
+  }
+  .footer-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--silver-dark);
+    letter-spacing: 0.06em;
+  }
+  .footer-date {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: #333;
+  }
+
+  /* Scroll reveal */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero    { animation: fadeUp 0.6s ease both; }
+  .tldr    { animation: fadeUp 0.6s 0.1s ease both; }
+  .section { animation: fadeUp 0.5s 0.15s ease both; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">
+    <div class="logo-crossh"></div>
+    <div class="logo-bubble"></div>
+  </div>
+  <span class="header-title">Simple Spirit Level</span>
+  <span class="header-badge">No data collected</span>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="hero-eyebrow">Legal · Privacy</p>
+    <h1>Privacy <span>Policy</span></h1>
+    <p class="hero-sub">Effective date: 2026 · com.spiritlevel</p>
+  </div>
+
+  <div class="tldr">
+    <p class="tldr-label">The short version</p>
+    <div class="tldr-grid">
+      <div class="tldr-item">No data collected or stored</div>
+      <div class="tldr-item">No internet access required</div>
+      <div class="tldr-item">No analytics or tracking</div>
+      <div class="tldr-item">No advertising SDKs</div>
+      <div class="tldr-item">No account needed</div>
+      <div class="tldr-item">Settings stay on your device</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-num">01</p>
+    <h2>Overview</h2>
+    <p>Simple Spirit Level is a precision measurement tool. It uses your phone's accelerometer to display tilt angles. That is the entire scope of what this app does.</p>
+    <p>This policy describes what data the app accesses, how it is used, and confirms that no information is collected, transmitted or shared with any third party.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-num">02</p>
+    <h2>Data we collect</h2>
+    <p>None. Simple Spirit Level does not collect any personal data, usage data, diagnostic data, or any other information about you or your device.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-num">03</p>
+    <h2>Permissions used</h2>
+    <p>The app requests the following Android permissions:</p>
+    <table class="perm-table">
+      <thead>
+        <tr>
+          <th>Permission</th>
+          <th>Why it's needed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="inline-code">ACCELEROMETER</span></td>
+          <td>Reads tilt angles from the device sensor to display bubble level readings. No data leaves the app.</td>
+        </tr>
+        <tr>
+          <td><span class="inline-code">VIBRATE</span></td>
+          <td>Powers the optional haptic feedback when you approach level. Only triggers if you enable it in settings.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1rem;">The app does not request internet, location, camera, microphone, contacts, storage, or any other permission.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-num">04</p>
+    <h2>Local storage</h2>
+    <p>Your saved angles and settings (dark mode, colour mode, skin, calibration offsets) are stored locally on your device using Android <span class="inline-code">SharedPreferences</span>. This data never leaves your device and is deleted if you uninstall the app.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-num">05</p>
+    <h2>Third-party services</h2>
+    <p>Simple Spirit Level contains no third-party SDKs, analytics libraries, advertising networks, or crash reporting services. There are no external network requests of any kind.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-num">06</p>
+    <h2>Children's privacy</h2>
+    <p>This app does not collect data from anyone, including children under 13. It is rated Everyone on Google Play.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-num">07</p>
+    <h2>Changes to this policy</h2>
+    <p>If this policy changes, the updated version will be posted at this URL with a new effective date. Given the nature of the app, significant changes are unlikely.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-num">08</p>
+    <h2>Contact</h2>
+    <p>Questions about this policy? Get in touch:</p>
+    <p style="margin-top:0.75rem;">
+      <a class="contact-link" href="mailto:tempe_bones@hotmail.com">tempe_bones@hotmail.com</a>
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">Simple Spirit Level · Garyck Arntzen · com.spiritlevel</span>
+    <span class="footer-date">Last updated 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
